@@ -24,6 +24,7 @@ require "shikashi/privileges"
 require "shikashi/pick_argument"
 require "getsource"
 require "timeout"
+require "ruby-prof"
 
 module Shikashi
 
@@ -216,6 +217,7 @@ module Shikashi
       end
 
       def handle_method(klass, recv, method_name)
+        RubyProf.resume
         source = nil
 
         method_id = 0
@@ -260,6 +262,7 @@ module Shikashi
             end
           end
 
+          RubyProf.pause
           return nil if method_name == :instance_eval
           return nil if method_name == :binding
 
