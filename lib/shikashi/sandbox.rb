@@ -274,7 +274,7 @@ module Shikashi
       end # if
 
       def get_caller
-        caller_locations[2].to_s.split(":")[0]
+        caller_locations[2].path
       end
     end # Class
 
